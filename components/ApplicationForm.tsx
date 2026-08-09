@@ -407,8 +407,8 @@ export default function ApplicationForm() {
               className="mt-1 h-4 w-4 rounded border-sky-300 text-sky-600 outline-none focus:ring-2 focus:ring-sky-400"
             />
             <label htmlFor={consentId} className="text-sm leading-6 text-slate-700">
-              I confirm that I own all rights to this footage and consent to its
-              use for AI model dataset training.
+              I confirm that I own all rights to this footage and agree to the
+              dataset terms.
             </label>
           </div>
         </div>
@@ -424,7 +424,7 @@ export default function ApplicationForm() {
               Submitting...
             </span>
           ) : (
-            "Submit Application"
+            "Submit Application ($55/Video Rate)"
           )}
         </button>
       </form>
