@@ -159,7 +159,7 @@ export default function ApplicationForm() {
       <section
         id="application-form"
         aria-labelledby="application-success-heading"
-        className="scroll-mt-24 rounded-2xl border border-sky-100 bg-white/80 p-8 shadow-xl shadow-sky-100/30 backdrop-blur-md"
+        className="scroll-mt-24 rounded-2xl border border-sky-100 bg-white/90 p-6 shadow-xl shadow-sky-100/40 backdrop-blur-md sm:p-8"
       >
         <div className="flex flex-col items-center text-center">
           <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-sky-200 bg-sky-50 text-sky-600">
@@ -190,7 +190,7 @@ export default function ApplicationForm() {
     <section
       id="application-form"
       aria-labelledby="application-form-heading"
-      className="scroll-mt-24 rounded-2xl border border-sky-100 bg-white/80 p-6 shadow-xl shadow-sky-100/30 backdrop-blur-md sm:p-8"
+      className="scroll-mt-24 rounded-2xl border border-sky-100 bg-white/90 p-6 shadow-xl shadow-sky-100/40 backdrop-blur-md sm:p-8"
     >
       <header className="mb-7">
         <h2
@@ -353,7 +353,7 @@ export default function ApplicationForm() {
             className={inputClassName}
           >
             <option value="" disabled>
-              Select a category…
+              Select a category...
             </option>
             {VIDEO_CATEGORIES.map((category) => (
               <option key={category} value={category}>
@@ -421,7 +421,7 @@ export default function ApplicationForm() {
           {isLoading ? (
             <span className="flex items-center gap-2">
               <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-              Submitting…
+              Submitting...
             </span>
           ) : (
             "Submit Application"

@@ -1,5 +1,7 @@
 import {
+  CheckCircle2,
   FolderSearch,
+  Shield,
   Tags,
   Upload,
   Wallet,
@@ -17,15 +19,13 @@ const steps = [
   {
     step: "Step 2",
     title: "Upload raw video",
-    description:
-      "Upload the raw, unedited video file through our portal.",
+    description: "Upload the raw, unedited video file through our portal.",
     icon: Upload,
   },
   {
     step: "Step 3",
     title: "Categorize your video",
-    description:
-      "Categorize the video using our category options.",
+    description: "Categorize the video using our category options.",
     icon: Tags,
   },
   {
@@ -37,6 +37,20 @@ const steps = [
   },
 ] as const;
 
+const qualityGuidelines = [
+  "Authentic, previously recorded real-life footage only.",
+  "Original audio intact with no added music or voiceovers.",
+  "Minimum 1080p or 4K resolution preferred.",
+  "No text overlays, beauty filters, watermarks, or post-processing edits.",
+] as const;
+
+const privacyCommitments = [
+  "Used strictly for internal AI model training and dataset development.",
+  "Never posted to social media or public platforms.",
+  "Never used in advertisements or commercial promotions.",
+  "Never sold to third-party data brokers.",
+] as const;
+
 export default function Home() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-sky-50 via-slate-50 to-blue-100/60 text-slate-900">
@@ -46,7 +60,7 @@ export default function Home() {
       />
 
       <main className="relative mx-auto flex w-full max-w-5xl flex-col gap-14 px-4 py-14 sm:gap-16 sm:px-6 sm:py-20 lg:px-8">
-        {/* Hero */}
+        {/* 1. Hero */}
         <header className="mx-auto max-w-3xl text-center">
           <p className="inline-flex items-center rounded-full border border-sky-200 bg-white/80 px-4 py-1.5 text-xs font-semibold tracking-[0.12em] text-sky-700 uppercase shadow-sm backdrop-blur-sm">
             OceanSource AI UGC Project
@@ -65,12 +79,12 @@ export default function Home() {
               href="#application-form"
               className="inline-flex items-center justify-center rounded-xl bg-sky-600 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-sky-600/25 outline-none transition duration-200 hover:bg-sky-500 focus:ring-2 focus:ring-sky-400 focus:ring-offset-2"
             >
-              Apply &amp; Submit Video ($55 Rate)
+              Jump to Application Form
             </a>
           </div>
         </header>
 
-        {/* Who We Are */}
+        {/* 2. Who We Are */}
         <section
           aria-labelledby="who-we-are-heading"
           className="rounded-2xl border border-sky-100 bg-white/80 p-6 shadow-xl shadow-sky-100/30 backdrop-blur-md sm:p-8"
@@ -83,14 +97,38 @@ export default function Home() {
           </h2>
           <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
             OceanSource AI develops next-generation artificial intelligence
-            powered by real human experiences. Instead of relying on staged
-            studio clips or synthetic data, we train multimodal models on
+            powered by real human experiences. We train multimodal models on
             real-world footage so AI can understand physical motion, human
             behavior, and environment lighting as they actually exist.
           </p>
         </section>
 
-        {/* What You Will Do */}
+        {/* 3. Application Form */}
+        <div className="mx-auto w-full max-w-2xl">
+          <ApplicationForm />
+        </div>
+
+        {/* 4. Why We Collect Videos */}
+        <section
+          aria-labelledby="why-collect-heading"
+          className="rounded-2xl border border-sky-100 bg-white/80 p-6 shadow-xl shadow-sky-100/30 backdrop-blur-md sm:p-8"
+        >
+          <h2
+            id="why-collect-heading"
+            className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl"
+          >
+            Why We Collect Real-World Videos
+          </h2>
+          <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
+            Unscripted real-world footage with natural lighting, organic motion,
+            and ambient audio teaches AI models to handle real-world complexity
+            better than staged studio clips. These authentic recordings help
+            multimodal systems learn how people move, speak, and interact inside
+            everyday environments.
+          </p>
+        </section>
+
+        {/* 5. What You Will Do */}
         <section aria-labelledby="what-you-will-do-heading">
           <h2
             id="what-you-will-do-heading"
@@ -127,10 +165,59 @@ export default function Home() {
           </ol>
         </section>
 
-        {/* Application Form */}
-        <div className="mx-auto w-full max-w-2xl">
-          <ApplicationForm />
-        </div>
+        {/* 6. Guidelines & Privacy */}
+        <section aria-labelledby="guidelines-heading">
+          <h2
+            id="guidelines-heading"
+            className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl"
+          >
+            Submission Guidelines &amp; Privacy Guarantees
+          </h2>
+
+          <div className="mt-8 grid gap-4 lg:grid-cols-2">
+            <article className="rounded-2xl border border-sky-100 bg-white/80 p-6 shadow-xl shadow-sky-100/30 backdrop-blur-md">
+              <div className="mb-4 flex items-center gap-3">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-sky-100 bg-sky-50 text-sky-600">
+                  <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <h3 className="text-base font-semibold text-slate-900">
+                  Quality Guidelines
+                </h3>
+              </div>
+              <ul className="space-y-3">
+                {qualityGuidelines.map((item) => (
+                  <li
+                    key={item}
+                    className="text-sm leading-6 text-slate-600"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </article>
+
+            <article className="rounded-2xl border border-sky-100 bg-white/80 p-6 shadow-xl shadow-sky-100/30 backdrop-blur-md">
+              <div className="mb-4 flex items-center gap-3">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-sky-100 bg-sky-50 text-sky-600">
+                  <Shield className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <h3 className="text-base font-semibold text-slate-900">
+                  Privacy Commitments
+                </h3>
+              </div>
+              <ul className="space-y-3">
+                {privacyCommitments.map((item) => (
+                  <li
+                    key={item}
+                    className="text-sm leading-6 text-slate-600"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          </div>
+        </section>
       </main>
     </div>
   );
