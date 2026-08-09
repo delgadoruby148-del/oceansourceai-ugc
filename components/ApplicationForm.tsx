@@ -35,6 +35,9 @@ const INITIAL_FORM: FormState = {
   portfolio_link: "",
 };
 
+const inputClassName =
+  "w-full rounded-xl border border-zinc-700 bg-zinc-950/80 px-3.5 py-2.5 text-sm text-zinc-100 placeholder:text-zinc-500 outline-none transition duration-200 focus:border-transparent focus:ring-2 focus:ring-zinc-400 disabled:cursor-not-allowed disabled:opacity-60";
+
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
@@ -58,7 +61,9 @@ export default function ApplicationForm() {
 
   function validate(): string | null {
     if (!form.email.trim()) return "Email is required.";
-    if (!isValidEmail(form.email.trim())) return "Please enter a valid email address.";
+    if (!isValidEmail(form.email.trim())) {
+      return "Please enter a valid email address.";
+    }
     if (!form.phone_number.trim()) return "Phone number is required.";
     if (!form.discord_username.trim()) return "Discord username is required.";
     if (!form.country) return "Please select a country.";
@@ -100,37 +105,66 @@ export default function ApplicationForm() {
     setForm(INITIAL_FORM);
     setStatus({
       type: "success",
-      message: "Application submitted successfully. We'll be in touch soon!",
+      message:
+        "Application submitted successfully. Our talent team will review your profile within 24–48 hours.",
     });
   }
 
   const isLoading = status.type === "loading";
 
+  if (status.type === "success") {
+    return (
+      <div className="w-full rounded-2xl border border-zinc-800 bg-zinc-900/80 p-8 shadow-xl shadow-black/20 transition">
+        <div className="flex flex-col items-center text-center">
+          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-zinc-700 bg-zinc-950 text-zinc-200">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.75"
+              className="h-6 w-6"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+          </div>
+          <h2 className="text-xl font-semibold tracking-tight text-white">
+            You&apos;re in the queue
+          </h2>
+          <p className="mt-3 max-w-sm text-sm leading-6 text-zinc-400">
+            {status.message}
+          </p>
+          <button
+            type="button"
+            onClick={() => setStatus({ type: "idle" })}
+            className="mt-6 rounded-xl border border-zinc-700 bg-zinc-950 px-4 py-2.5 text-sm font-medium text-zinc-200 transition hover:border-zinc-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-zinc-400"
+          >
+            Submit another application
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="w-full max-w-lg rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-      <div className="mb-8">
-        <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+    <div className="w-full rounded-2xl border border-zinc-800 bg-zinc-900/80 p-6 shadow-xl shadow-black/20 sm:p-8">
+      <div className="mb-7">
+        <h2 className="text-xl font-semibold tracking-tight text-white">
           Creator Application
-        </h1>
-        <p className="mt-2 text-sm leading-6 text-slate-600">
-          Apply to join the OceanSourceAI UGC creator program. We&apos;ll review
-          your details and follow up shortly.
+        </h2>
+        <p className="mt-2 text-sm leading-6 text-zinc-400">
+          Tell us how to reach you and where we can review your work.
         </p>
       </div>
-
-      {status.type === "success" && (
-        <div
-          role="alert"
-          className="mb-6 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800"
-        >
-          {status.message}
-        </div>
-      )}
 
       {status.type === "error" && (
         <div
           role="alert"
-          className="mb-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
+          className="mb-6 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200"
         >
           {status.message}
         </div>
@@ -140,9 +174,9 @@ export default function ApplicationForm() {
         <div>
           <label
             htmlFor="email"
-            className="mb-1.5 block text-sm font-medium text-slate-800"
+            className="mb-1.5 block text-sm font-medium text-zinc-200"
           >
-            Email <span className="text-red-500">*</span>
+            Email <span className="text-zinc-500">*</span>
           </label>
           <input
             id="email"
@@ -152,7 +186,7 @@ export default function ApplicationForm() {
             disabled={isLoading}
             value={form.email}
             onChange={(e) => updateField("email", e.target.value)}
-            className="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:bg-slate-50"
+            className={inputClassName}
             placeholder="you@example.com"
           />
         </div>
@@ -160,9 +194,9 @@ export default function ApplicationForm() {
         <div>
           <label
             htmlFor="phone_number"
-            className="mb-1.5 block text-sm font-medium text-slate-800"
+            className="mb-1.5 block text-sm font-medium text-zinc-200"
           >
-            Phone Number <span className="text-red-500">*</span>
+            Phone Number <span className="text-zinc-500">*</span>
           </label>
           <input
             id="phone_number"
@@ -172,7 +206,7 @@ export default function ApplicationForm() {
             disabled={isLoading}
             value={form.phone_number}
             onChange={(e) => updateField("phone_number", e.target.value)}
-            className="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:bg-slate-50"
+            className={inputClassName}
             placeholder="+1 (555) 123-4567"
           />
         </div>
@@ -180,9 +214,9 @@ export default function ApplicationForm() {
         <div>
           <label
             htmlFor="discord_username"
-            className="mb-1.5 block text-sm font-medium text-slate-800"
+            className="mb-1.5 block text-sm font-medium text-zinc-200"
           >
-            Discord Username <span className="text-red-500">*</span>
+            Discord Username <span className="text-zinc-500">*</span>
           </label>
           <input
             id="discord_username"
@@ -191,7 +225,7 @@ export default function ApplicationForm() {
             disabled={isLoading}
             value={form.discord_username}
             onChange={(e) => updateField("discord_username", e.target.value)}
-            className="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:bg-slate-50"
+            className={inputClassName}
             placeholder="username"
           />
         </div>
@@ -199,9 +233,9 @@ export default function ApplicationForm() {
         <div>
           <label
             htmlFor="country"
-            className="mb-1.5 block text-sm font-medium text-slate-800"
+            className="mb-1.5 block text-sm font-medium text-zinc-200"
           >
-            Country <span className="text-red-500">*</span>
+            Country <span className="text-zinc-500">*</span>
           </label>
           <select
             id="country"
@@ -211,7 +245,7 @@ export default function ApplicationForm() {
             onChange={(e) =>
               updateField("country", e.target.value as CountryCode)
             }
-            className="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:bg-slate-50"
+            className={inputClassName}
           >
             {COUNTRIES.map((country) => (
               <option key={country.code} value={country.code}>
@@ -224,10 +258,10 @@ export default function ApplicationForm() {
         <div>
           <label
             htmlFor="portfolio_link"
-            className="mb-1.5 block text-sm font-medium text-slate-800"
+            className="mb-1.5 block text-sm font-medium text-zinc-200"
           >
             Portfolio Link{" "}
-            <span className="font-normal text-slate-500">(optional)</span>
+            <span className="font-normal text-zinc-500">(optional)</span>
           </label>
           <input
             id="portfolio_link"
@@ -235,19 +269,22 @@ export default function ApplicationForm() {
             disabled={isLoading}
             value={form.portfolio_link}
             onChange={(e) => updateField("portfolio_link", e.target.value)}
-            className="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:bg-slate-50"
+            className={inputClassName}
             placeholder="https://your-portfolio.com"
           />
+          <p className="mt-1.5 text-xs leading-5 text-zinc-500">
+            Link your TikTok, Instagram, Google Drive, or portfolio site
+          </p>
         </div>
 
         <button
           type="submit"
           disabled={isLoading}
-          className="flex w-full items-center justify-center rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-70"
+          className="flex w-full items-center justify-center rounded-xl bg-zinc-100 px-4 py-3 text-sm font-semibold text-zinc-950 transition duration-200 hover:bg-white focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:ring-offset-2 focus:ring-offset-zinc-900 disabled:cursor-not-allowed disabled:opacity-70"
         >
           {isLoading ? (
             <span className="flex items-center gap-2">
-              <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+              <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-zinc-400 border-t-zinc-950" />
               Submitting…
             </span>
           ) : (
