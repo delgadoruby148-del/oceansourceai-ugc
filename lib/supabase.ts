@@ -1,30 +1,13 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from '@supabase/supabase-js';
 
-function sanitizeEnv(value: string | undefined): string {
-  return (value ?? "").trim().replace(/^['"]+|['"]+$/g, "");
-}
+const rawUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+const rawKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 
-function resolveSupabaseUrl(rawUrl: string): string {
-  if (!rawUrl) {
-    return "https://placeholder.supabase.co";
-  }
+// Ensure valid URL fallback so Next.js build never crashes during prerender
+const supabaseUrl = rawUrl.startsWith('http')
+  ? rawUrl.trim()
+  : 'https://xpbsnswyvlwyjchbeloc.supabase.co';
 
-  try {
-    const parsed = new URL(rawUrl);
-    if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
-      return "https://placeholder.supabase.co";
-    }
-    return parsed.toString().replace(/\/$/, "");
-  } catch {
-    return "https://placeholder.supabase.co";
-  }
-}
-
-const supabaseUrl = resolveSupabaseUrl(
-  sanitizeEnv(process.env.NEXT_PUBLIC_SUPABASE_URL)
-);
-const supabaseAnonKey =
-  sanitizeEnv(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) ||
-  "placeholder-anon-key";
+const supabaseAnonKey = rawKey.trim() || 'sb_publishable_hi7gSrpulgEPooPpAjMTCg_IJDOZZZm';
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
