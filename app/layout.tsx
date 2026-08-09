@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "OceanSource AI | UGC Creator Application",
+  title: "OceanSource AI | Multimodal Dataset Creator Application",
   description:
-    "Apply to the OceanSource AI Creator Network. Create UGC, get paid $55+ per video, and join continuous brand deals.",
+    "Submit raw video footage to train next-gen multimodal AI models. Earn $55 per approved video with OceanSource AI.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

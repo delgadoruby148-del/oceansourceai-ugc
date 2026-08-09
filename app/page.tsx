@@ -1,134 +1,89 @@
 import ApplicationForm from "@/components/ApplicationForm";
+import CreatorInstructions from "@/components/CreatorInstructions";
 
-const benefits = [
+const highlights = [
   {
-    title: "Flexible Remote Work",
-    description: "Work from anywhere on your schedule",
-    icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        className="h-5 w-5"
-        aria-hidden="true"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"
-        />
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M3.6 9h16.8M3.6 15h16.8M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"
-        />
-      </svg>
-    ),
+    emoji: "💰",
+    title: "$55 Flat Payout",
+    description: "Paid directly upon quality control check.",
   },
   {
-    title: "Guaranteed Payouts",
-    description: "$55 test video payout + scaled brand retainers",
-    icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        className="h-5 w-5"
-        aria-hidden="true"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M12 3v18M17 8.5c0-1.9-2.2-3.5-5-3.5S7 6.6 7 8.5s2.2 3.5 5 3.5 5 1.6 5 3.5-2.2 3.5-5 3.5-5-1.6-5-3.5"
-        />
-      </svg>
-    ),
+    emoji: "📁",
+    title: "Raw Footage Only",
+    description: "No editing, filters, or post-production needed.",
   },
   {
-    title: "Weekly Brand Briefs",
-    description: "Direct script & product delivery",
-    icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        className="h-5 w-5"
-        aria-hidden="true"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M5 7h14v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V7Z"
-        />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6M9 16h4" />
-      </svg>
-    ),
+    emoji: "🔒",
+    title: "Strict Data Privacy",
+    description: "Data used exclusively for AI model weights training.",
   },
 ] as const;
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-slate-950 text-zinc-100">
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-sky-50 via-blue-50 to-slate-100 text-slate-900">
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(113,113,122,0.18),_transparent_55%)]"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,_transparent,_rgba(9,9,11,0.85))]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(56,189,248,0.18),_transparent_55%)]"
         aria-hidden="true"
       />
 
-      <main className="relative mx-auto flex w-full max-w-5xl flex-col px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
-        {/* Hero */}
-        <section className="mx-auto max-w-3xl text-center">
-          <p className="inline-flex items-center border border-zinc-700/80 bg-zinc-900/70 px-3 py-1 text-xs font-medium tracking-[0.14em] text-zinc-300 uppercase">
-            OceanSource AI Creator Network
+      <main className="relative mx-auto flex w-full max-w-5xl flex-col px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
+        <header className="mx-auto max-w-3xl text-center">
+          <p className="inline-flex items-center rounded-full border border-sky-300/70 bg-white/70 px-4 py-1.5 text-xs font-semibold tracking-[0.08em] text-sky-700 uppercase shadow-[0_0_24px_rgba(56,189,248,0.35)] backdrop-blur-sm">
+            OceanSource AI • Multimodal Dataset Initiative
           </p>
-          <h1 className="mt-6 text-4xl font-semibold tracking-tight text-white sm:text-5xl sm:leading-[1.1]">
-            Create UGC. Get Paid $55+ Per Video.
+          <h1 className="mt-6 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl sm:leading-[1.1]">
+            Train Next-Gen AI Models. Earn{" "}
+            <span className="text-sky-600">$55 Per Video.</span>
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-zinc-400 sm:text-lg sm:leading-8">
-            Join our network of UGC creators producing high-performing video ads
-            for leading brands. Fast payouts and continuous brand deals.
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
+            Submit raw, unedited video footage to help train multimodal AI
+            systems in understanding human movement, speech alignment, and
+            real-world spatial environments. Guaranteed $55 payout per approved
+            video.
           </p>
-        </section>
+        </header>
 
-        {/* Benefits */}
-        <section className="mt-12 grid gap-4 sm:grid-cols-3">
-          {benefits.map((benefit, index) => (
+        <section
+          aria-label="Key highlights"
+          className="mt-12 grid gap-4 sm:grid-cols-3"
+        >
+          {highlights.map((item) => (
             <article
-              key={benefit.title}
-              className="group rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900"
-              style={{ animationDelay: `${index * 80}ms` }}
+              key={item.title}
+              className="rounded-2xl border border-sky-100 bg-white/80 p-5 shadow-xl shadow-sky-100/50 backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:border-sky-200"
             >
-              <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-300 transition group-hover:border-zinc-700 group-hover:text-white">
-                {benefit.icon}
+              <div className="text-2xl" aria-hidden="true">
+                {item.emoji}
               </div>
-              <h2 className="text-sm font-semibold tracking-tight text-white">
-                {benefit.title}
+              <h2 className="mt-3 text-sm font-semibold tracking-tight text-slate-900">
+                {item.title}
               </h2>
-              <p className="mt-1.5 text-sm leading-6 text-zinc-400">
-                {benefit.description}
+              <p className="mt-1.5 text-sm leading-6 text-slate-600">
+                {item.description}
               </p>
             </article>
           ))}
         </section>
 
-        {/* Application Form */}
-        <section className="mx-auto mt-12 w-full max-w-xl">
+        <div className="mt-12">
+          <CreatorInstructions />
+        </div>
+
+        <section
+          aria-label="Creator application form"
+          className="mx-auto mt-10 w-full max-w-2xl"
+        >
           <ApplicationForm />
         </section>
 
-        {/* FAQ / Trust Footer */}
-        <footer className="mx-auto mt-14 max-w-2xl border-t border-zinc-800/80 pt-8 text-center">
-          <h2 className="text-sm font-semibold tracking-tight text-zinc-200">
+        <footer className="mx-auto mt-14 max-w-2xl border-t border-sky-100 pt-8 text-center">
+          <h2 className="text-sm font-semibold tracking-tight text-slate-900">
             What happens after I apply?
           </h2>
-          <p className="mt-2 text-sm leading-6 text-zinc-500">
-            Our talent team reviews your portfolio within 24-48 hours.
+          <p className="mt-2 text-sm leading-6 text-slate-600">
+            Our talent team reviews your application within 24–48 hours and
+            shares next steps for your first paid recording brief.
           </p>
         </footer>
       </main>
