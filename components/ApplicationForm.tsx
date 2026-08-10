@@ -56,7 +56,7 @@ const INITIAL_FORM: ApplicationFormState = {
 };
 
 const inputClassName =
-  "w-full rounded-xl border border-sky-100 bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition duration-200 focus:border-transparent focus:ring-2 focus:ring-sky-400 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:opacity-70";
+  "w-full rounded-lg border border-slate-700 bg-slate-900/90 p-3 text-sm text-white placeholder-slate-400 outline-none transition duration-200 focus:border-transparent focus:ring-2 focus:ring-sky-400 disabled:cursor-not-allowed disabled:opacity-60";
 
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -157,25 +157,25 @@ export default function ApplicationForm() {
       <section
         id="application-form"
         aria-labelledby="application-success-heading"
-        className="rounded-2xl border border-sky-100 bg-white/90 p-6 shadow-xl shadow-sky-100/40 backdrop-blur-md sm:p-8"
+        className="rounded-2xl border border-slate-800 bg-slate-900/70 p-8 shadow-2xl backdrop-blur-xl"
       >
         <div className="flex flex-col items-center text-center">
-          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-sky-200 bg-sky-50 text-sky-600">
+          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-sky-800 bg-sky-950/60 text-sky-300">
             <CheckCircle2 className="h-6 w-6" aria-hidden="true" />
           </div>
           <h2
             id="application-success-heading"
-            className="text-xl font-semibold tracking-tight text-slate-900"
+            className="text-xl font-semibold tracking-tight text-white"
           >
             Application received
           </h2>
-          <p className="mt-3 max-w-md text-sm leading-6 text-slate-600">
+          <p className="mt-3 max-w-md text-sm leading-6 text-slate-300">
             {status.message}
           </p>
           <button
             type="button"
             onClick={() => setStatus({ type: "idle" })}
-            className="mt-6 rounded-xl border border-sky-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 outline-none transition hover:border-sky-300 hover:text-slate-900 focus:ring-2 focus:ring-sky-400"
+            className="mt-6 rounded-lg border border-slate-700 bg-slate-900 px-4 py-2.5 text-sm font-medium text-slate-200 outline-none transition hover:border-slate-500 hover:text-white focus:ring-2 focus:ring-sky-400"
           >
             Submit another application
           </button>
@@ -188,18 +188,18 @@ export default function ApplicationForm() {
     <section
       id="application-form"
       aria-labelledby="application-form-heading"
-      className="rounded-2xl border border-sky-100 bg-white/90 p-6 shadow-xl shadow-sky-100/40 backdrop-blur-md sm:p-8"
+      className="rounded-2xl border border-slate-800 bg-slate-900/70 p-8 shadow-2xl backdrop-blur-xl"
     >
       <header className="mb-6">
         <h2
           id="application-form-heading"
-          className="text-xl font-semibold tracking-tight text-slate-900"
+          className="text-xl font-semibold tracking-tight text-white"
         >
           Creator Application
         </h2>
-        <p className="mt-2 text-sm leading-6 text-slate-600">
-          Join the Discord server, share your details, and submit a sample video
-          link to apply at the $55 per accepted video rate.
+        <p className="mt-2 text-sm leading-6 text-slate-300">
+          Join Discord, share your details, and submit a sample video link to
+          apply at the $55 per accepted video rate.
         </p>
       </header>
 
@@ -207,7 +207,7 @@ export default function ApplicationForm() {
         <div
           role="alert"
           aria-live="polite"
-          className="mb-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+          className="mb-5 rounded-xl border border-red-800/80 bg-red-950/50 px-4 py-3 text-sm text-red-200"
         >
           {status.message}
         </div>
@@ -217,9 +217,9 @@ export default function ApplicationForm() {
         <div>
           <label
             htmlFor="full_name"
-            className="mb-1.5 block text-sm font-medium text-slate-800"
+            className="mb-1.5 block text-sm font-medium text-slate-200"
           >
-            Full Name <span className="text-sky-600">*</span>
+            Full Name <span className="text-sky-400">*</span>
           </label>
           <input
             id="full_name"
@@ -239,9 +239,9 @@ export default function ApplicationForm() {
         <div>
           <label
             htmlFor="email"
-            className="mb-1.5 block text-sm font-medium text-slate-800"
+            className="mb-1.5 block text-sm font-medium text-slate-200"
           >
-            Email Address <span className="text-sky-600">*</span>
+            Email Address <span className="text-sky-400">*</span>
           </label>
           <input
             id="email"
@@ -261,9 +261,9 @@ export default function ApplicationForm() {
         <div>
           <label
             htmlFor="phone_number"
-            className="mb-1.5 block text-sm font-medium text-slate-800"
+            className="mb-1.5 block text-sm font-medium text-slate-200"
           >
-            Phone Number <span className="text-sky-600">*</span>
+            Phone Number <span className="text-sky-400">*</span>
           </label>
           <input
             id="phone_number"
@@ -283,9 +283,9 @@ export default function ApplicationForm() {
         <div>
           <label
             htmlFor="country"
-            className="mb-1.5 block text-sm font-medium text-slate-800"
+            className="mb-1.5 block text-sm font-medium text-slate-200"
           >
-            Country <span className="text-sky-600">*</span>
+            Country <span className="text-sky-400">*</span>
           </label>
           <select
             id="country"
@@ -309,20 +309,20 @@ export default function ApplicationForm() {
 
         <aside
           aria-labelledby="discord-mandatory-heading"
-          className="rounded-2xl border border-sky-200 bg-sky-50/80 p-4 shadow-sm shadow-sky-100/40"
+          className="rounded-xl border border-sky-800/80 bg-sky-950/60 p-5"
         >
           <div className="flex items-start gap-3">
-            <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-sky-200 bg-white text-sky-600">
+            <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-sky-800 bg-slate-950 text-sky-300">
               <MessagesSquare className="h-5 w-5" aria-hidden="true" />
             </span>
             <div className="min-w-0 flex-1">
               <h3
                 id="discord-mandatory-heading"
-                className="text-sm font-semibold text-slate-900"
+                className="text-sm font-semibold text-white"
               >
                 Mandatory Step: Join Our Official Discord Server
               </h3>
-              <p className="mt-2 text-sm leading-6 text-slate-600">
+              <p className="mt-2 text-sm leading-6 text-slate-300">
                 All creator onboarding, weekly briefing updates, support, and
                 payout announcements are conducted exclusively inside our Discord
                 community.
@@ -331,7 +331,7 @@ export default function ApplicationForm() {
                 href={DISCORD_INVITE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-sky-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-sky-600/20 outline-none transition duration-200 hover:bg-sky-500 focus:ring-2 focus:ring-sky-400 focus:ring-offset-2"
+                className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white outline-none transition duration-200 hover:bg-indigo-500 focus:ring-2 focus:ring-sky-400"
               >
                 Join OceanSource AI Discord
                 <ExternalLink className="h-4 w-4" aria-hidden="true" />
@@ -343,9 +343,9 @@ export default function ApplicationForm() {
         <div>
           <label
             htmlFor="discord_username"
-            className="mb-1.5 block text-sm font-medium text-slate-800"
+            className="mb-1.5 block text-sm font-medium text-slate-200"
           >
-            Discord Username <span className="text-sky-600">*</span>
+            Discord Username <span className="text-sky-400">*</span>
           </label>
           <input
             id="discord_username"
@@ -360,13 +360,13 @@ export default function ApplicationForm() {
             className={inputClassName}
             placeholder="@username or username#0000"
           />
-          <p id={discordHelpId} className="mt-1.5 text-xs leading-5 text-slate-500">
+          <p id={discordHelpId} className="mt-1.5 text-xs leading-5 text-slate-400">
             Enter your active Discord username exactly as it appears in the
             OceanSource AI server.
           </p>
         </div>
 
-        <div className="flex items-start gap-3 rounded-xl border border-sky-200/70 bg-sky-50/70 p-3">
+        <div className="flex items-start gap-3 rounded-xl border border-slate-700 bg-slate-950/50 p-3">
           <input
             id={discordJoinedId}
             name="discord_joined"
@@ -376,11 +376,11 @@ export default function ApplicationForm() {
             disabled={isLoading}
             checked={form.discord_joined}
             onChange={(e) => updateField("discord_joined", e.target.checked)}
-            className="mt-1 h-4 w-4 rounded border-sky-300 text-sky-600 outline-none focus:ring-2 focus:ring-sky-400"
+            className="mt-1 h-4 w-4 rounded border-slate-600 bg-slate-900 text-sky-500 outline-none focus:ring-2 focus:ring-sky-400"
           />
           <label
             htmlFor={discordJoinedId}
-            className="text-sm leading-6 text-slate-700"
+            className="text-sm leading-6 text-slate-200"
           >
             I confirm that I have joined the official OceanSource AI Discord
             server and provided my active Discord username.
@@ -390,10 +390,10 @@ export default function ApplicationForm() {
         <div>
           <label
             htmlFor="portfolio_link"
-            className="mb-1.5 block text-sm font-medium text-slate-800"
+            className="mb-1.5 block text-sm font-medium text-slate-200"
           >
             Sample / Portfolio Video Link{" "}
-            <span className="text-sky-600">*</span>
+            <span className="text-sky-400">*</span>
           </label>
           <input
             id="portfolio_link"
@@ -410,14 +410,14 @@ export default function ApplicationForm() {
           />
           <p
             id={`${formId}-portfolio-help`}
-            className="mt-1.5 text-xs leading-5 text-slate-500"
+            className="mt-1.5 text-xs leading-5 text-slate-400"
           >
             Share a Drive, TikTok, YouTube, or portfolio link to your sample
             footage.
           </p>
         </div>
 
-        <div className="rounded-xl border border-sky-200/70 bg-sky-50/70 p-4">
+        <div className="rounded-xl border border-slate-700 bg-slate-950/50 p-4">
           <div className="flex items-start gap-3">
             <input
               id={consentId}
@@ -428,9 +428,9 @@ export default function ApplicationForm() {
               disabled={isLoading}
               checked={form.consent_accepted}
               onChange={(e) => updateField("consent_accepted", e.target.checked)}
-              className="mt-1 h-4 w-4 rounded border-sky-300 text-sky-600 outline-none focus:ring-2 focus:ring-sky-400"
+              className="mt-1 h-4 w-4 rounded border-slate-600 bg-slate-900 text-sky-500 outline-none focus:ring-2 focus:ring-sky-400"
             />
-            <label htmlFor={consentId} className="text-sm leading-6 text-slate-700">
+            <label htmlFor={consentId} className="text-sm leading-6 text-slate-200">
               I confirm that I own all rights to this footage and agree to the
               dataset terms.
             </label>
@@ -440,7 +440,7 @@ export default function ApplicationForm() {
         <button
           type="submit"
           disabled={isLoading}
-          className="flex w-full items-center justify-center rounded-xl bg-sky-600 px-4 py-3 text-sm font-semibold text-white shadow-md shadow-sky-600/20 outline-none transition duration-200 hover:bg-sky-500 focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-70"
+          className="flex w-full items-center justify-center rounded-lg bg-sky-500 py-3.5 text-sm font-bold text-slate-950 shadow-lg shadow-sky-500/20 outline-none transition-all hover:bg-sky-400 focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:cursor-not-allowed disabled:opacity-70"
         >
           {isLoading ? (
             <span className="flex items-center gap-2">
