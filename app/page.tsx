@@ -12,7 +12,7 @@ const steps = [
     step: "Step 1",
     title: "Upload",
     description:
-      "Select and upload raw, unedited footage from your phone camera roll or video archives.",
+      "Upload raw, unedited footage from your phone camera roll or video archives.",
     icon: FolderUp,
   },
   {
@@ -26,14 +26,14 @@ const steps = [
     step: "Step 3",
     title: "Categorize",
     description:
-      "Assign the appropriate video category to ensure proper AI dataset labeling.",
+      "Categorize the video to ensure proper AI dataset labeling.",
     icon: Tags,
   },
   {
     step: "Step 4",
-    title: "Submit & Receive Payment",
+    title: "Submit & Get Paid",
     description:
-      "Submit your video for quality review. Approved earnings are automatically credited to your OceanSource AI Creator's Dashboard.",
+      "Submit for quality review and receive payment.",
     icon: Wallet,
   },
 ] as const;
@@ -46,100 +46,86 @@ export default function Home() {
         aria-hidden="true"
       />
 
-      <main className="relative mx-auto flex w-full max-w-5xl flex-col gap-14 px-4 py-14 sm:gap-16 sm:px-6 sm:py-20 lg:px-8">
-        {/* 1. Hero */}
-        <header className="mx-auto max-w-3xl text-center">
-          <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-5xl sm:leading-[1.1]">
-            oceansourceai-UGC- project{" "}
-            <span className="text-sky-600">$55/video</span>
-          </h1>
+      <main className="relative mx-auto grid max-w-7xl grid-cols-1 items-start gap-8 px-4 py-12 lg:grid-cols-12 lg:px-6 lg:py-16">
+        {/* Left column: content */}
+        <div className="flex flex-col gap-8 lg:col-span-7">
+          <header>
+            <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl sm:leading-[1.15] lg:text-5xl">
+              oceansourceai-UGC- project{" "}
+              <span className="text-sky-600">$55/video</span>
+            </h1>
 
-          <div className="mt-8 rounded-2xl border border-sky-100 bg-white/90 p-6 text-left shadow-xl shadow-sky-100/40 backdrop-blur-md sm:p-8">
-            <p className="text-sm leading-7 text-slate-600 sm:text-base">
-              OceanSource AI is looking for creators to help in training AI by
-              uploading, describing and categorising their videos. We use
-              authentic, pre-recorded user-generated footage from your phone
-              camera roll or video archives featuring real-world environments,
-              unedited motion, and natural human interaction.
-            </p>
-          </div>
+            <div className="mt-6 rounded-2xl border border-sky-100 bg-white/90 p-6 shadow-xl shadow-sky-100/40 backdrop-blur-md sm:p-7">
+              <p className="text-sm leading-7 text-slate-600 sm:text-base">
+                OceanSource AI is looking for creators to help in training AI by
+                uploading, describing and categorising their videos. We use
+                authentic, pre-recorded user-generated footage from your phone
+                camera roll or video archives.
+              </p>
+            </div>
 
-          <div
-            role="note"
-            className="mt-6 inline-flex w-full max-w-xl flex-col items-center gap-2 rounded-2xl border border-sky-200 bg-sky-50/90 px-5 py-4 text-center shadow-sm shadow-sky-100/50 sm:flex-row sm:justify-center sm:gap-3 sm:text-left"
-          >
-            <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-sky-200 bg-white text-sky-600">
-              <BadgeDollarSign className="h-5 w-5" aria-hidden="true" />
-            </span>
-            <p className="text-sm leading-6 text-slate-700">
-              Accepted creators can upload up to{" "}
-              <strong className="font-semibold text-slate-900">
-                10 videos per week
-              </strong>
-              , earning up to{" "}
-              <strong className="font-semibold text-sky-700">
-                $550 per week
-              </strong>{" "}
-              ($55 per approved video).
-            </p>
-          </div>
+            <div
+              role="note"
+              className="mt-4 flex items-start gap-3 rounded-2xl border border-sky-200 bg-sky-50/90 px-5 py-4 shadow-sm shadow-sky-100/50"
+            >
+              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-sky-200 bg-white text-sky-600">
+                <BadgeDollarSign className="h-5 w-5" aria-hidden="true" />
+              </span>
+              <p className="text-sm leading-6 text-slate-700">
+                Earn up to{" "}
+                <strong className="font-semibold text-sky-700">$550/week</strong>{" "}
+                — Creators can upload up to{" "}
+                <strong className="font-semibold text-slate-900">
+                  10 accepted videos per week
+                </strong>{" "}
+                ($55 per video).
+              </p>
+            </div>
+          </header>
 
-        </header>
-
-        {/* 2. Application Form */}
-        <div className="mx-auto w-full max-w-2xl">
-          <p className="mb-4 text-center text-sm leading-6 text-slate-600">
-            Before submitting, you must join the official OceanSource AI Discord
-            server. Onboarding, support, and payout updates happen there.
-          </p>
-          <ApplicationForm />
-        </div>
-
-        {/* 3. What You Will Do */}
-        <section aria-labelledby="what-you-will-do-heading">
-          <div className="max-w-3xl">
+          <section aria-labelledby="what-you-will-do-heading">
             <h2
               id="what-you-will-do-heading"
-              className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl"
+              className="text-2xl font-semibold tracking-tight text-slate-900"
             >
               What You Will Do On The Project
             </h2>
-            <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
+            <p className="mt-2 text-sm leading-6 text-slate-600">
               Once accepted into the OceanSource AI creator network, your
               workflow consists of four straightforward steps:
             </p>
-          </div>
 
-          <ol className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {steps.map((item) => {
-              const Icon = item.icon;
-              return (
-                <li
-                  key={item.step}
-                  className="rounded-2xl border border-sky-100 bg-white/90 p-5 shadow-xl shadow-sky-100/40 backdrop-blur-md"
-                >
-                  <div className="mb-4 flex items-center justify-between">
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-sky-100 bg-sky-50 text-sky-600">
-                      <Icon className="h-5 w-5" aria-hidden="true" />
-                    </span>
-                    <span className="text-xs font-semibold tracking-wide text-sky-600 uppercase">
-                      {item.step}
-                    </span>
-                  </div>
-                  <h3 className="text-sm font-semibold text-slate-900">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">
-                    {item.description}
-                  </p>
-                </li>
-              );
-            })}
-          </ol>
+            <ol className="mt-6 grid gap-3 sm:grid-cols-2">
+              {steps.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <li
+                    key={item.step}
+                    className="rounded-2xl border border-sky-100 bg-white/90 p-5 shadow-xl shadow-sky-100/40 backdrop-blur-md"
+                  >
+                    <div className="mb-3 flex items-center justify-between">
+                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-sky-100 bg-sky-50 text-sky-600">
+                        <Icon className="h-5 w-5" aria-hidden="true" />
+                      </span>
+                      <span className="text-xs font-semibold tracking-wide text-sky-600 uppercase">
+                        {item.step}
+                      </span>
+                    </div>
+                    <h3 className="text-sm font-semibold text-slate-900">
+                      {item.title}
+                    </h3>
+                    <p className="mt-1.5 text-sm leading-6 text-slate-600">
+                      {item.description}
+                    </p>
+                  </li>
+                );
+              })}
+            </ol>
+          </section>
 
           <aside
             aria-labelledby="payout-details-heading"
-            className="mt-8 rounded-2xl border border-sky-100 bg-white/90 p-6 shadow-xl shadow-sky-100/40 backdrop-blur-md sm:p-8"
+            className="rounded-2xl border border-sky-100 bg-white/90 p-6 shadow-xl shadow-sky-100/40 backdrop-blur-md"
           >
             <div className="flex items-start gap-3">
               <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-sky-100 bg-sky-50 text-sky-600">
@@ -150,13 +136,13 @@ export default function Home() {
                   id="payout-details-heading"
                   className="text-base font-semibold text-slate-900"
                 >
-                  Payment &amp; Payout Details
+                  Payout &amp; Schedule Details
                 </h3>
                 <p className="mt-2 text-sm leading-6 text-slate-600">
-                  Creator balances are paid out every Friday.
+                  Balance paid out every Friday.
                 </p>
-                <p className="mt-2 text-sm leading-6 text-slate-600">
-                  Supported payout methods:{" "}
+                <p className="mt-1.5 text-sm leading-6 text-slate-600">
+                  Supported channels:{" "}
                   <strong className="font-semibold text-slate-900">
                     PayPal, Airtm, or Cryptocurrency
                   </strong>
@@ -165,7 +151,14 @@ export default function Home() {
               </div>
             </div>
           </aside>
-        </section>
+        </div>
+
+        {/* Right column: sticky form */}
+        <div className="lg:col-span-5">
+          <div className="lg:sticky lg:top-8">
+            <ApplicationForm />
+          </div>
+        </div>
       </main>
     </div>
   );
