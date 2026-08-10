@@ -84,14 +84,6 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-8 flex justify-center">
-            <a
-              href="#application-form"
-              className="inline-flex items-center justify-center rounded-xl bg-sky-600 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-sky-600/25 outline-none transition duration-200 hover:bg-sky-500 focus:ring-2 focus:ring-sky-400 focus:ring-offset-2"
-            >
-              Fill Out Application Form
-            </a>
-          </div>
         </header>
 
         {/* 2. Application Form */}
