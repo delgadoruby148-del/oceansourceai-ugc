@@ -15,16 +15,7 @@ const COUNTRIES = [
   { code: "DE", label: "Germany" },
 ] as const;
 
-const VIDEO_CATEGORIES = [
-  "Unboxing / Product Demonstration",
-  "Direct-to-Camera / Vlog",
-  "Instructional / Step-by-Step Guide",
-  "Pet or Animal Interaction",
-  "Navigation / Walking Through a Space",
-] as const;
-
 type CountryCode = (typeof COUNTRIES)[number]["code"];
-type VideoCategory = (typeof VIDEO_CATEGORIES)[number];
 
 interface ApplicationFormState {
   full_name: string;
@@ -33,7 +24,6 @@ interface ApplicationFormState {
   discord_username: string;
   discord_joined: boolean;
   country: CountryCode;
-  video_category: VideoCategory | "";
   portfolio_link: string;
   consent_accepted: boolean;
 }
@@ -61,7 +51,6 @@ const INITIAL_FORM: ApplicationFormState = {
   discord_username: "",
   discord_joined: false,
   country: "US",
-  video_category: "",
   portfolio_link: "",
   consent_accepted: false,
 };
@@ -108,7 +97,6 @@ export default function ApplicationForm() {
       return "You must confirm that you have joined the official OceanSource AI Discord server.";
     }
     if (!form.country) return "Please select a country.";
-    if (!form.video_category) return "Please select a video category.";
     if (!form.portfolio_link.trim()) {
       return "Please provide a portfolio or sample video link.";
     }
@@ -133,7 +121,7 @@ export default function ApplicationForm() {
     setStatus({ type: "loading" });
 
     // Insert only existing table columns to avoid schema changes.
-    // Full name, video category, and consent are collected/validated in the UI.
+    // Full name and consent are collected/validated in the UI.
     const payload: ApplicationInsertPayload = {
       email: form.email.trim(),
       phone_number: form.phone_number.trim(),
@@ -396,39 +384,6 @@ export default function ApplicationForm() {
             {COUNTRIES.map((country) => (
               <option key={country.code} value={country.code}>
                 {country.label}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label
-            htmlFor="video_category"
-            className="mb-1.5 block text-sm font-medium text-slate-800"
-          >
-            Video Category <span className="text-sky-600">*</span>
-          </label>
-          <select
-            id="video_category"
-            name="video_category"
-            required
-            aria-required="true"
-            disabled={isLoading}
-            value={form.video_category}
-            onChange={(e) =>
-              updateField(
-                "video_category",
-                e.target.value as VideoCategory | ""
-              )
-            }
-            className={inputClassName}
-          >
-            <option value="" disabled>
-              Select a category...
-            </option>
-            {VIDEO_CATEGORIES.map((category) => (
-              <option key={category} value={category}>
-                {category}
               </option>
             ))}
           </select>
