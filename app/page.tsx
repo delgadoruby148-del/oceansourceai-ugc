@@ -55,16 +55,12 @@ export default function Home() {
           </h1>
 
           <div className="mt-8 rounded-2xl border border-sky-100 bg-white/90 p-6 text-left shadow-xl shadow-sky-100/40 backdrop-blur-md sm:p-8">
-            <h2 className="text-sm font-semibold tracking-[0.12em] text-sky-700 uppercase">
-              What We Are Looking For
-            </h2>
-            <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
-              OceanSource AI is purchasing authentic, pre-recorded
-              user-generated videos directly from your camera roll or video
-              archive. Footage must feature real-world environments, unedited
-              motion, and natural human interaction to train multimodal AI
-              systems that understand how people move, speak, and operate in
-              everyday spaces.
+            <p className="text-sm leading-7 text-slate-600 sm:text-base">
+              OceanSource AI is looking for creators to help in training AI by
+              uploading, describing and categorising their videos. We use
+              authentic, pre-recorded user-generated footage from your phone
+              camera roll or video archives featuring real-world environments,
+              unedited motion, and natural human interaction.
             </p>
           </div>
 
@@ -76,11 +72,11 @@ export default function Home() {
               <BadgeDollarSign className="h-5 w-5" aria-hidden="true" />
             </span>
             <p className="text-sm leading-6 text-slate-700">
-              Submit up to{" "}
+              Accepted creators can upload up to{" "}
               <strong className="font-semibold text-slate-900">
                 10 videos per week
-              </strong>{" "}
-              and earn up to{" "}
+              </strong>
+              , earning up to{" "}
               <strong className="font-semibold text-sky-700">
                 $550 per week
               </strong>{" "}
@@ -100,6 +96,10 @@ export default function Home() {
 
         {/* 2. Application Form */}
         <div className="mx-auto w-full max-w-2xl">
+          <p className="mb-4 text-center text-sm leading-6 text-slate-600">
+            Before submitting, you must join the official OceanSource AI Discord
+            server. Onboarding, support, and payout updates happen there.
+          </p>
           <ApplicationForm />
         </div>
 

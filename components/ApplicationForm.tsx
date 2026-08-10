@@ -1,8 +1,11 @@
 'use client';
 
 import { FormEvent, useId, useState } from "react";
-import { CheckCircle2, Loader2 } from "lucide-react";
+import { CheckCircle2, ExternalLink, Loader2, MessagesSquare } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+
+const DISCORD_INVITE_URL =
+  process.env.NEXT_PUBLIC_DISCORD_INVITE_URL || "https://discord.gg/";
 
 const COUNTRIES = [
   { code: "US", label: "United States" },
@@ -28,6 +31,7 @@ interface ApplicationFormState {
   email: string;
   phone_number: string;
   discord_username: string;
+  discord_joined: boolean;
   country: CountryCode;
   video_category: VideoCategory | "";
   portfolio_link: string;
@@ -55,6 +59,7 @@ const INITIAL_FORM: ApplicationFormState = {
   email: "",
   phone_number: "",
   discord_username: "",
+  discord_joined: false,
   country: "US",
   video_category: "",
   portfolio_link: "",
@@ -96,7 +101,12 @@ export default function ApplicationForm() {
       return "Please enter a valid email address.";
     }
     if (!form.phone_number.trim()) return "Phone number is required.";
-    if (!form.discord_username.trim()) return "Discord username is required.";
+    if (!form.discord_username.trim()) {
+      return "Discord username is required (e.g. @username or username#0000).";
+    }
+    if (!form.discord_joined) {
+      return "You must confirm that you have joined the official OceanSource AI Discord server.";
+    }
     if (!form.country) return "Please select a country.";
     if (!form.video_category) return "Please select a video category.";
     if (!form.portfolio_link.trim()) {
@@ -153,6 +163,8 @@ export default function ApplicationForm() {
 
   const isLoading = status.type === "loading";
   const consentId = `${formId}-consent`;
+  const discordJoinedId = `${formId}-discord-joined`;
+  const discordHelpId = `${formId}-discord-help`;
 
   if (status.type === "success") {
     return (
@@ -216,6 +228,39 @@ export default function ApplicationForm() {
       )}
 
       <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+        <aside
+          aria-labelledby="discord-mandatory-heading"
+          className="rounded-2xl border border-sky-200 bg-sky-50/80 p-5 shadow-sm shadow-sky-100/40"
+        >
+          <div className="flex items-start gap-3">
+            <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-sky-200 bg-white text-sky-600">
+              <MessagesSquare className="h-5 w-5" aria-hidden="true" />
+            </span>
+            <div className="min-w-0 flex-1">
+              <h3
+                id="discord-mandatory-heading"
+                className="text-sm font-semibold text-slate-900 sm:text-base"
+              >
+                Mandatory Step: Join Our Official Discord Server
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">
+                All creator onboarding, weekly briefing updates, support, and
+                payout announcements are conducted exclusively inside our Discord
+                community.
+              </p>
+              <a
+                href={DISCORD_INVITE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-sky-600 px-4 py-3 text-sm font-semibold text-white shadow-md shadow-sky-600/20 outline-none transition duration-200 hover:bg-sky-500 focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 sm:w-auto"
+              >
+                Join OceanSource AI Discord
+                <ExternalLink className="h-4 w-4" aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+        </aside>
+
         <div>
           <label
             htmlFor="full_name"
@@ -282,12 +327,12 @@ export default function ApplicationForm() {
           />
         </div>
 
-        <div>
-          <label
-            htmlFor="discord_username"
-            className="mb-1.5 block text-sm font-medium text-slate-800"
-          >
+        <fieldset className="rounded-2xl border border-sky-100 bg-white/70 p-4 sm:p-5">
+          <legend className="px-1 text-sm font-semibold text-slate-900">
             Discord Username <span className="text-sky-600">*</span>
+          </legend>
+          <label htmlFor="discord_username" className="sr-only">
+            Discord Username
           </label>
           <input
             id="discord_username"
@@ -295,13 +340,39 @@ export default function ApplicationForm() {
             type="text"
             required
             aria-required="true"
+            aria-describedby={discordHelpId}
             disabled={isLoading}
             value={form.discord_username}
             onChange={(e) => updateField("discord_username", e.target.value)}
-            className={inputClassName}
-            placeholder="username"
+            className={`${inputClassName} mt-2`}
+            placeholder="@username or username#0000"
           />
-        </div>
+          <p id={discordHelpId} className="mt-1.5 text-xs leading-5 text-slate-500">
+            Enter your active Discord username exactly as it appears in the
+            OceanSource AI server.
+          </p>
+
+          <div className="mt-4 flex items-start gap-3 rounded-xl border border-sky-200/70 bg-sky-50/70 p-3">
+            <input
+              id={discordJoinedId}
+              name="discord_joined"
+              type="checkbox"
+              required
+              aria-required="true"
+              disabled={isLoading}
+              checked={form.discord_joined}
+              onChange={(e) => updateField("discord_joined", e.target.checked)}
+              className="mt-1 h-4 w-4 rounded border-sky-300 text-sky-600 outline-none focus:ring-2 focus:ring-sky-400"
+            />
+            <label
+              htmlFor={discordJoinedId}
+              className="text-sm leading-6 text-slate-700"
+            >
+              I confirm that I have joined the official OceanSource AI Discord
+              server and provided my active Discord username.
+            </label>
+          </div>
+        </fieldset>
 
         <div>
           <label
