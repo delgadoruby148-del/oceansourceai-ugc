@@ -199,7 +199,7 @@ export default function ApplicationForm() {
         </h2>
         <p className="mt-2 text-sm leading-6 text-slate-700">
           Join Discord, share your details, and submit a sample video link to
-          apply at the $55 per accepted video rate.
+          apply at the $100 per video rate ($50 upfront / $50 post-review).
         </p>
       </header>
 
@@ -448,7 +448,7 @@ export default function ApplicationForm() {
               Submitting...
             </span>
           ) : (
-            "Submit Application ($55/Video Rate)"
+            "Submit Application ($100/Video Rate)"
           )}
         </button>
       </form>

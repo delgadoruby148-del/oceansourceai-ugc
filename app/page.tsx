@@ -1,8 +1,8 @@
 import {
   BadgeDollarSign,
+  ClipboardCheck,
   FolderUp,
-  FileText,
-  Tags,
+  Timer,
   Wallet,
 } from "lucide-react";
 import ApplicationForm from "@/components/ApplicationForm";
@@ -10,30 +10,37 @@ import ApplicationForm from "@/components/ApplicationForm";
 const steps = [
   {
     step: "Step 1",
-    title: "Upload",
+    title: "Upload & Categorize",
     description:
-      "Upload raw, unedited footage from your phone camera roll or video archives.",
+      "Upload raw, unedited footage from your phone camera roll or video archives, write a brief description, and assign a category.",
     icon: FolderUp,
   },
   {
     step: "Step 2",
-    title: "Describe",
+    title: "Submission & Upfront Payout",
     description:
-      "Write a brief, accurate description detailing what is happening in the video.",
-    icon: FileText,
+      "Submit your 10 weekly videos. You can withdraw your initial $50 per video payment as soon as all 10 weekly videos have been submitted.",
+    icon: Wallet,
   },
   {
     step: "Step 3",
-    title: "Categorize",
-    description:
-      "Categorize the video to ensure proper AI dataset labeling.",
-    icon: Tags,
+    title: "Weekly Review",
+    description: "Video reviews are conducted once per week.",
+    icon: ClipboardCheck,
   },
   {
     step: "Step 4",
-    title: "Submit & Get Paid",
-    description: "Submit for quality review and receive payment.",
-    icon: Wallet,
+    title: "Post-Review Payout",
+    description:
+      "Accepted videos receive an additional $50 after-review payment. Rejected videos do not qualify for the $50 post-review payout.",
+    icon: BadgeDollarSign,
+  },
+  {
+    step: "Step 5",
+    title: "Fast Withdrawals",
+    description:
+      "After-review earnings can be withdrawn at any time. All withdrawal requests are processed within 30 minutes via PayPal, Airtm, or Cryptocurrency.",
+    icon: Timer,
   },
 ] as const;
 
@@ -46,7 +53,7 @@ export default function Home() {
           <header>
             <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl lg:leading-[1.1]">
               oceansourceai-UGC- project{" "}
-              <span className="text-sky-400">$55/video</span>
+              <span className="text-sky-400">$100/video</span>
             </h1>
           </header>
 
@@ -67,15 +74,14 @@ export default function Home() {
               <BadgeDollarSign className="h-5 w-5" aria-hidden="true" />
             </span>
             <p className="text-sm leading-6 text-slate-300">
-              Accepted creators can upload up to{" "}
               <strong className="font-semibold text-white">
-                10 videos per week
-              </strong>
-              , earning up to{" "}
-              <strong className="font-semibold text-sky-300">
-                $550 per week
+                $100 Per Video ($1,000/Week Max)
               </strong>{" "}
-              ($55 per approved video).
+              — Earn{" "}
+              <strong className="font-semibold text-sky-300">$50</strong> upon
+              weekly submission and{" "}
+              <strong className="font-semibold text-sky-300">$50</strong> upon
+              review approval.
             </p>
           </div>
 
@@ -83,6 +89,9 @@ export default function Home() {
             <h2 className="text-xl font-semibold tracking-tight text-white">
               What You Will Do On The Project
             </h2>
+            <p className="mt-2 text-sm leading-6 text-slate-300">
+              Workflow and payout rules for accepted creators:
+            </p>
             <ol className="mt-5 space-y-4">
               {steps.map((item) => {
                 const Icon = item.icon;
@@ -118,7 +127,9 @@ export default function Home() {
                   Payout Information
                 </h3>
                 <p className="mt-2 text-sm leading-6 text-slate-300">
-                  Balance paid out every Friday via{" "}
+                  $50 upfront after your 10 weekly videos are submitted, plus $50
+                  more for each accepted video after weekly review. Withdrawals
+                  are processed within 30 minutes via{" "}
                   <strong className="font-semibold text-white">
                     PayPal, Airtm, or Cryptocurrency
                   </strong>

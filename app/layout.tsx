@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "OceanSource AI | Monetize Your Camera Roll — $55 Per Video",
+  title: "OceanSource AI | UGC Project — $100 Per Video",
   description:
-    "Apply to OceanSource AI’s UGC project. Submit authentic pre-recorded footage and earn $55 per accepted video.",
+    "Apply to OceanSource AI’s UGC project. Submit authentic pre-recorded footage and earn $100 per video ($50 upfront / $50 post-review).",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
