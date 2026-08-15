@@ -1,8 +1,7 @@
 import {
   BadgeDollarSign,
-  ClipboardCheck,
+  FileText,
   FolderUp,
-  Timer,
   Wallet,
 } from "lucide-react";
 import ApplicationForm from "@/components/ApplicationForm";
@@ -10,37 +9,31 @@ import ApplicationForm from "@/components/ApplicationForm";
 const steps = [
   {
     step: "Step 1",
-    title: "Upload & Categorize",
+    title: "Upload",
     description:
-      "Upload raw, unedited footage from your phone camera roll or video archives, write a brief description, and assign a category.",
+      "Upload raw, unedited footage from your phone camera roll or video archives.",
     icon: FolderUp,
   },
   {
     step: "Step 2",
-    title: "Immediate Upfront Earnings",
+    title: "Describe & Categorize",
     description:
-      "Earn $50 upfront per video instantly upon submission.",
-    icon: Wallet,
+      "Write a brief, accurate description detailing what is happening in the video and assign a category.",
+    icon: FileText,
   },
   {
     step: "Step 3",
-    title: "Flexible Withdrawals",
+    title: "Earn",
     description:
-      "Withdraw any amount from your balance at any time, including your early upfront earnings. Zero minimum video or balance restrictions.",
-    icon: Timer,
+      "Earn $50 upon video submission and an additional $50 upon weekly review approval.",
+    icon: BadgeDollarSign,
   },
   {
     step: "Step 4",
-    title: "Weekly Quality Review",
-    description: "Videos undergo review once per week.",
-    icon: ClipboardCheck,
-  },
-  {
-    step: "Step 5",
-    title: "Post-Review Payout & 30-Min Cashout",
+    title: "Get Paid",
     description:
-      "Approved videos receive an additional $50 post-review payment. All withdrawal requests are processed within 30 minutes via PayPal, Airtm, or Cryptocurrency.",
-    icon: BadgeDollarSign,
+      "Receive payouts directly via PayPal, Airtm, or Cryptocurrency.",
+    icon: Wallet,
   },
 ] as const;
 
@@ -68,35 +61,18 @@ export default function Home() {
 
           <div
             role="note"
-            className="flex items-start gap-3 rounded-2xl border border-slate-800 bg-slate-900/70 p-6 shadow-xl backdrop-blur-md"
+            className="rounded-2xl border border-slate-800 bg-slate-900/70 px-5 py-4 shadow-xl backdrop-blur-md"
           >
-            <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-700 bg-slate-950 text-sky-400">
-              <BadgeDollarSign className="h-5 w-5" aria-hidden="true" />
-            </span>
-            <div className="space-y-2 text-sm leading-6 text-slate-300">
-              <p>
-                <strong className="font-semibold text-white">
-                  Withdraw Any Amount, Anytime.
-                </strong>
-              </p>
-              <p>
-                <strong className="font-semibold text-white">
-                  $100 Per Video ($50 Upfront / $50 Post-Review)
-                </strong>{" "}
-                — Withdraw any amount, including early payments, at any time. No
-                minimum thresholds. Submit up to 10 videos per week ($1,000/week
-                max).
-              </p>
-            </div>
+            <p className="text-sm font-medium leading-6 text-slate-200">
+              $100 Per Video ($50 upfront / $50 post-review) • Up to 10 videos
+              per week
+            </p>
           </div>
 
           <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 shadow-xl backdrop-blur-md">
             <h2 className="text-xl font-semibold tracking-tight text-white">
               What You Will Do On The Project
             </h2>
-            <p className="mt-2 text-sm leading-6 text-slate-300">
-              Workflow and flexible payout rules for accepted creators:
-            </p>
             <ol className="mt-5 space-y-4">
               {steps.map((item) => {
                 const Icon = item.icon;
@@ -129,18 +105,11 @@ export default function Home() {
               </span>
               <div>
                 <h3 className="text-base font-semibold text-white">
-                  Payout Information
+                  Payouts
                 </h3>
                 <p className="mt-2 text-sm leading-6 text-slate-300">
-                  Earn $50 upfront as soon as a video is uploaded and
-                  categorized, then $50 more after weekly review approval. Withdraw
-                  any amount—including early payments—immediately with no waiting,
-                  no minimum balance, and no minimum video count. All withdrawal
-                  requests are processed within 30 minutes via{" "}
-                  <strong className="font-semibold text-white">
-                    PayPal, Airtm, or Cryptocurrency
-                  </strong>
-                  .
+                  Up to $1,000 per week. Paid via PayPal, Airtm, or
+                  Cryptocurrency.
                 </p>
               </div>
             </div>

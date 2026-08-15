@@ -198,8 +198,7 @@ export default function ApplicationForm() {
           Creator Application
         </h2>
         <p className="mt-2 text-sm leading-6 text-slate-700">
-          $100 per video rate ($50 instant upfront pay + $50 post-review pay).
-          Withdraw any amount anytime.
+          Apply to join our UGC creator network ($100/video rate).
         </p>
       </header>
 
@@ -448,7 +447,7 @@ export default function ApplicationForm() {
               Submitting...
             </span>
           ) : (
-            "Submit Application ($100/Video Rate)"
+            "Submit Application"
           )}
         </button>
       </form>
