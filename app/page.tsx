@@ -17,30 +17,30 @@ const steps = [
   },
   {
     step: "Step 2",
-    title: "Submission & Upfront Payout",
+    title: "Immediate Upfront Earnings",
     description:
-      "Submit your 10 weekly videos. You can withdraw your initial $50 per video payment as soon as all 10 weekly videos have been submitted.",
+      "Earn $50 upfront per video instantly upon submission.",
     icon: Wallet,
   },
   {
     step: "Step 3",
-    title: "Weekly Review",
-    description: "Video reviews are conducted once per week.",
-    icon: ClipboardCheck,
+    title: "Flexible Withdrawals",
+    description:
+      "Withdraw any amount from your balance at any time, including your early upfront earnings. Zero minimum video or balance restrictions.",
+    icon: Timer,
   },
   {
     step: "Step 4",
-    title: "Post-Review Payout",
-    description:
-      "Accepted videos receive an additional $50 after-review payment. Rejected videos do not qualify for the $50 post-review payout.",
-    icon: BadgeDollarSign,
+    title: "Weekly Quality Review",
+    description: "Videos undergo review once per week.",
+    icon: ClipboardCheck,
   },
   {
     step: "Step 5",
-    title: "Fast Withdrawals",
+    title: "Post-Review Payout & 30-Min Cashout",
     description:
-      "After-review earnings can be withdrawn at any time. All withdrawal requests are processed within 30 minutes via PayPal, Airtm, or Cryptocurrency.",
-    icon: Timer,
+      "Approved videos receive an additional $50 post-review payment. All withdrawal requests are processed within 30 minutes via PayPal, Airtm, or Cryptocurrency.",
+    icon: BadgeDollarSign,
   },
 ] as const;
 
@@ -73,16 +73,21 @@ export default function Home() {
             <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-700 bg-slate-950 text-sky-400">
               <BadgeDollarSign className="h-5 w-5" aria-hidden="true" />
             </span>
-            <p className="text-sm leading-6 text-slate-300">
-              <strong className="font-semibold text-white">
-                $100 Per Video ($1,000/Week Max)
-              </strong>{" "}
-              — Earn{" "}
-              <strong className="font-semibold text-sky-300">$50</strong> upon
-              weekly submission and{" "}
-              <strong className="font-semibold text-sky-300">$50</strong> upon
-              review approval.
-            </p>
+            <div className="space-y-2 text-sm leading-6 text-slate-300">
+              <p>
+                <strong className="font-semibold text-white">
+                  Withdraw Any Amount, Anytime.
+                </strong>
+              </p>
+              <p>
+                <strong className="font-semibold text-white">
+                  $100 Per Video ($50 Upfront / $50 Post-Review)
+                </strong>{" "}
+                — Withdraw any amount, including early payments, at any time. No
+                minimum thresholds. Submit up to 10 videos per week ($1,000/week
+                max).
+              </p>
+            </div>
           </div>
 
           <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 shadow-xl backdrop-blur-md">
@@ -90,7 +95,7 @@ export default function Home() {
               What You Will Do On The Project
             </h2>
             <p className="mt-2 text-sm leading-6 text-slate-300">
-              Workflow and payout rules for accepted creators:
+              Workflow and flexible payout rules for accepted creators:
             </p>
             <ol className="mt-5 space-y-4">
               {steps.map((item) => {
@@ -127,9 +132,11 @@ export default function Home() {
                   Payout Information
                 </h3>
                 <p className="mt-2 text-sm leading-6 text-slate-300">
-                  $50 upfront after your 10 weekly videos are submitted, plus $50
-                  more for each accepted video after weekly review. Withdrawals
-                  are processed within 30 minutes via{" "}
+                  Earn $50 upfront as soon as a video is uploaded and
+                  categorized, then $50 more after weekly review approval. Withdraw
+                  any amount—including early payments—immediately with no waiting,
+                  no minimum balance, and no minimum video count. All withdrawal
+                  requests are processed within 30 minutes via{" "}
                   <strong className="font-semibold text-white">
                     PayPal, Airtm, or Cryptocurrency
                   </strong>

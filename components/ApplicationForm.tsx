@@ -198,8 +198,8 @@ export default function ApplicationForm() {
           Creator Application
         </h2>
         <p className="mt-2 text-sm leading-6 text-slate-700">
-          Join Discord, share your details, and submit a sample video link to
-          apply at the $100 per video rate ($50 upfront / $50 post-review).
+          $100 per video rate ($50 instant upfront pay + $50 post-review pay).
+          Withdraw any amount anytime.
         </p>
       </header>
 
