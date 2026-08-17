@@ -5,7 +5,7 @@ import { CheckCircle2, ExternalLink, Loader2, MessagesSquare } from "lucide-reac
 import { supabase } from "@/lib/supabase";
 
 const DISCORD_INVITE_URL =
-  process.env.NEXT_PUBLIC_DISCORD_INVITE_URL || "https://discord.gg/";
+  process.env.NEXT_PUBLIC_DISCORD_INVITE_URL || "https://discord.gg/4ZyxpKMxw";
 
 const COUNTRIES = [
   { code: "US", label: "United States" },
